@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a4328c99391b14ca9b82532b920e23, type: 3}
+  m_Name: Human_David
+  m_EditorClassIdentifier: 
+  characterData:
+    CharacterName: David
+    Age: 26
+    Status: Single
+    Job: Stockbroker
+    Character: Calculated
+  Dialogues:
+  - questionText: '[Family] You''re young and no girlfriend. Why so?'
+    response: Don't need one. I live how I want and do what I want. No obligations.
+      This is a luxury I can afford. And which I recommend.
+    asked: 0
+  - questionText: '[Job] You like doing what you do, right?'
+    response: Do I like it? No. Love it. I'm better off than most people in this
+      country and there's no way something can change that. It can only get better
+      and better.
+    asked: 0
+  - questionText: '[Society] Can humans and AI live side by side?'
+    response: They already live that, one way or another. AI is everywhere. In banking
+      systems, communications, medicine, national security, and so on. We live with
+      it every day. And if we abuse this relationship, it'll only be our fault.
+    asked: 0
+  - questionText: '[War] Aren''t you afraid of another Cyber War?'
+    response: They say that war is when the young and stupid die because of the incompetence
+      of the old. I'd say, they die because of their own stupidity in not being able
+      to make money from it. In war you'll sell anything, even against AI. There's
+      money in the air and I like taking deep breaths.
+    asked: 0
+  - questionText: '[Opinion] Is AI a threat?'
+    response: Depends on what you're asking. Can it destroy markets and governments
+      around the world?  Probably so. Can it take advantage of the poor?  Everyone
+      does it. AI is as much a threat to the world as you and me. We just have to
+      be prepared.
+    asked: 0
+  Portait: {fileID: 21300000, guid: d57770a9ba9767649b2f27640155c4cb, type: 3}
+  Objective: Ask questions to find out if he's AI
+  IsAI: 0
