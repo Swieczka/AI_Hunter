@@ -28,6 +28,8 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     public DialogueLine currentDialogue;
     private Queue<IEnumerator> coroutineQueue = new();
 
+    private int numberOfQuestionsAsked = 0;
+
     private void Awake()
     {
         GameManager.Instance.AvailableCharacter = characters;
@@ -49,16 +51,17 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     private void SelectCharacterToLoad()
     {
-        if (GameManager.Instance.IsTutorial)
-        {
-            LoadCharacter(tutorialCharacter);
-        }
-        else
-        {
-            LoadCharacter(characters[0]);
-            // LoadCharacter(characters[Random.Range(0, GameManager.Instance.AvailableCharacter.Count)]);
-            // GameManager.Instance.AvailableCharacter.Remove(currentCharacter);
-        }
+        LoadCharacter(characters[0]);
+        /* if (GameManager.Instance.IsTutorial)
+         {
+             LoadCharacter(tutorialCharacter);
+         }
+         else
+         {
+             LoadCharacter(characters[0]);
+             // LoadCharacter(characters[Random.Range(0, GameManager.Instance.AvailableCharacter.Count)]);
+             // GameManager.Instance.AvailableCharacter.Remove(currentCharacter);
+         }*/
     }
     
     void Update()
@@ -180,6 +183,11 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     {
         currentCharacter.ConversationLogsQuestions.Add(QuestionPanel.text);
         currentCharacter.ConversationLogsResponses.Add(ResponsePanel.text);
+        if(numberOfQuestionsAsked >= 3)
+        {
+            UnlockFinishConversationButton();
+            yield break;
+        }
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < questionButtons.Count; i++)
         {
@@ -191,6 +199,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     public void AskQuestion(int index)
     {
         LockButtons();
+        numberOfQuestionsAsked++;
         QuestionPanel.text = "";
         ResponsePanel.text = "";
         currentCharacter.Dialogues[index].asked = true;
@@ -229,6 +238,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     private void LoadCharacter(CharacterData c)
     {
+        numberOfQuestionsAsked = 0;
         currentCharacter = c;
         foreach(DialogueLine d in c.Dialogues)
         {
@@ -261,11 +271,22 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     private void UnlockFinishConversationButton()
     {
+        foreach (Button b in questionButtons)
+        {
+            b.gameObject.SetActive(false);
+        }
         FinishConversationButton.SetActive(true);
     }
 
     public void FinishConversation()
     {
+        GameManager.Instance.LogsData.logsData.question1 = currentCharacter.ConversationLogsQuestions[0];
+        GameManager.Instance.LogsData.logsData.question2 = currentCharacter.ConversationLogsQuestions[1];
+        GameManager.Instance.LogsData.logsData.question3 = currentCharacter.ConversationLogsQuestions[2];
 
+        GameManager.Instance.LogsData.logsData.response1 = currentCharacter.ConversationLogsResponses[0];
+        GameManager.Instance.LogsData.logsData.response2 = currentCharacter.ConversationLogsResponses[1];
+        GameManager.Instance.LogsData.logsData.response3 = currentCharacter.ConversationLogsResponses[2];
+        GameManager.Instance.LogsData.SubmitData();
     }
 }

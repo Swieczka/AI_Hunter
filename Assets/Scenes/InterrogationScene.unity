@@ -1253,10 +1253,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 169947361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 78.72, y: -330}
+  m_SizeDelta: {x: 157.44, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
@@ -1706,10 +1706,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 169947361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 163.455, y: -270}
+  m_SizeDelta: {x: 326.91, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695032709
 MonoBehaviour:
@@ -2217,16 +2217,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4074574829800160846, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      propertyPath: m_APIKey
+      value: g6b2h3j2WgBkkJzz7pF0iR1c3lmnGN51
+      objectReference: {fileID: 0}
+    - target: {fileID: -4074574829800160846, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      propertyPath: m_APISecret
+      value: Tu0TKcntoaduLfIZzBzAmWMRMuHJzhM6NoQcA3Vi9EXzFR0NmF0su9prW9d9P4iI
+      objectReference: {fileID: 0}
+    - target: {fileID: -4074574829800160846, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
       propertyPath: m_SceneFullName
       value: workspaces/default-pr29jdf6xnuzhipfu130pw/scenes/testowansko
       objectReference: {fileID: 0}
     - target: {fileID: 2395919966041133306, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
       propertyPath: m_GameData
       value: 
-      objectReference: {fileID: 11400000, guid: d4c901ab30bfa934d9eb9a0531338b59, type: 2}
+      objectReference: {fileID: 11400000, guid: 267ea5694f0cacd4c8a5e1ff617e412d, type: 2}
     - target: {fileID: 2395919966041133306, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
       propertyPath: m_AutoStart
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395919966041133306, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
+      propertyPath: m_SceneFullName
+      value: workspaces/default-pr29jdf6xnuzhipfu130pw/scenes/europe_2343
       objectReference: {fileID: 0}
     - target: {fileID: 3753617577465698405, guid: 3a0885e96397c414f80c73ab7dc0c72d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2658,10 +2670,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 169947361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 162.7, y: -30}
+  m_SizeDelta: {x: 325.4, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134046365
 MonoBehaviour:
@@ -3711,10 +3723,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 169947361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 163.455, y: -90}
+  m_SizeDelta: {x: 326.91, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625549797
 MonoBehaviour:
@@ -4993,10 +5005,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 169947361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 164.2, y: -210}
+  m_SizeDelta: {x: 328.4, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913017499
 MonoBehaviour:
@@ -5691,10 +5703,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 169947361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 162.7, y: -150}
+  m_SizeDelta: {x: 325.4, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2069323513
 MonoBehaviour:

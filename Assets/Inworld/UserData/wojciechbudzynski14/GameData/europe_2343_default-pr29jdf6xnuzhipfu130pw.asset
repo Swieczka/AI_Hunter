@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5abd9eaac9cc3e4585d7e8574c2511c, type: 3}
+  m_Name: europe_2343_default-pr29jdf6xnuzhipfu130pw
+  m_EditorClassIdentifier: 
+  sceneFullName: workspaces/default-pr29jdf6xnuzhipfu130pw/scenes/europe_2343
+  apiKey: g6b2h3j2WgBkkJzz7pF0iR1c3lmnGN51
+  apiSecret: Tu0TKcntoaduLfIZzBzAmWMRMuHJzhM6NoQcA3Vi9EXzFR0NmF0su9prW9d9P4iI
+  characters:
+  - agentId: 
+    brainName: workspaces/default-pr29jdf6xnuzhipfu130pw/characters/swieczka
+    givenName: Mark
+    characterAssets:
+      rpmModelUri: 
+      rpmImageUriPortrait: 
+      rpmImageUriPosture: 
+      avatarImg: 
+      avatarImgOriginal: 
+      thumbnailProgress: 0
+      avatarProgress: 0
+    thumbnail: {fileID: 0}
+  capabilities:
+    audio: 0
+    emotions: 0
+    interruptions: 0
+    narratedActions: 0
+    regenerateResponse: 0
+    text: 1
+    triggers: 0
+    phonemeInfo: 0
+    relations: 0
+    debugInfo: 0
+    multiAgent: 0

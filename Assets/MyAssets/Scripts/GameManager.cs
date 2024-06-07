@@ -33,5 +33,6 @@ public class GameManager : MonoBehaviour
 
     public bool IsTutorial = true;
     public List<CharacterData> AvailableCharacter = new();
+    public SendLogsData LogsData = null;
 
 }

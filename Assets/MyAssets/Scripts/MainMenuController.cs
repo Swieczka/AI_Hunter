@@ -17,6 +17,6 @@ public class MainMenuController : MonoBehaviour
     {
         anim.SetTrigger("FadeOut");
         yield return new WaitUntil(() => BlackImage.color.a == 1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 }

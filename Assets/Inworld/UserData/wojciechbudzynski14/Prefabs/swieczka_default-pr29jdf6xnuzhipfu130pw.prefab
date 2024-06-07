@@ -2537,10 +2537,10 @@ GameObject:
   - component: {fileID: 5434040550944468339}
   - component: {fileID: 7092010096207839909}
   - component: {fileID: 8693411156022996593}
-  - component: {fileID: 5525095625031473399}
   - component: {fileID: 4391415315103640359}
   - component: {fileID: 7158531187711530543}
   - component: {fileID: 5398018940280302538}
+  - component: {fileID: 5525095625031473399}
   m_Layer: 0
   m_Name: swieczka_default-pr29jdf6xnuzhipfu130pw
   m_TagString: Untagged
@@ -2695,10 +2695,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64744fd8922740478ac4edb57c452bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Interaction: {fileID: 0}
   m_Data:
     agentId: 
     brainName: workspaces/default-pr29jdf6xnuzhipfu130pw/characters/swieczka
-    givenName: Swieczka
+    givenName: Mark
     characterAssets:
       rpmModelUri: 
       rpmImageUriPortrait: 
@@ -2741,25 +2742,6 @@ MonoBehaviour:
         m_Calls: []
   m_VerboseLog: 0
   m_AutoStart: 1
---- !u!114 &5525095625031473399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7854280490881029066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2cf760508d484dbbe3b8e2c4db4351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ContinueKey: 32
-  m_SkipKey: 306
-  m_ContinueButton: {fileID: 0}
-  m_Interruptable: 1
-  m_AutoProceed: 1
-  m_MaxItemCount: 100
-  m_TextSpeedMultipler: 0.02
 --- !u!114 &4391415315103640359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2814,6 +2796,25 @@ MonoBehaviour:
   m_DistanceWeight: 0.5
   m_CharacterAngleWeight: 0.15
   m_RefreshRate: 0.25
+--- !u!114 &5525095625031473399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854280490881029066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2cf760508d484dbbe3b8e2c4db4351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ContinueKey: 32
+  m_SkipKey: 306
+  m_ContinueButton: {fileID: 0}
+  m_Interruptable: 1
+  m_AutoProceed: 1
+  m_MaxItemCount: 100
+  m_TextSpeedMultipler: 0.02
 --- !u!1 &8140183808962770580
 GameObject:
   m_ObjectHideFlags: 0
