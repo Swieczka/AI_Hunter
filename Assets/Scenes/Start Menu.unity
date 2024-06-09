@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848bb101cfa215f45a5664852a31c6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsTutorial: 1
+  IsTutorial: 0
   AvailableCharacter: []
   LogsData: {fileID: 1207830777}
 --- !u!4 &1207830776
@@ -772,8 +772,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4143bf58270d5bd44a8064e1d3903f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data1: ABCDE
-  data2: 12345
+  logsData:
+    question1: 
+    question2: 
+    question3: 
+    response1: 
+    response2: 
+    response3: 
 --- !u!1 &1466601082
 GameObject:
   m_ObjectHideFlags: 0

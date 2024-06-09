@@ -10,6 +10,8 @@ public class IntroManager : MonoBehaviour
     private Queue<IEnumerator> coroutineQueue = new();
 
     [SerializeField] private TMP_Text textField = null;
+    public Image BlackImage = null;
+    public Animator anim = null;
 
     public GameObject Button1 = null, Button2 = null;
     [TextArea]
@@ -20,6 +22,8 @@ public class IntroManager : MonoBehaviour
     [SerializeField] List<Image> UI_Frames = new();
     [SerializeField] List<Sprite> defaultSprites = new(), highlightSprites = new();
 
+    [SerializeField] Color colorFadeIn, colorFadeOut;
+
     private int frameIndex = 0;
     private int textIndex = 0;
 
@@ -27,6 +31,7 @@ public class IntroManager : MonoBehaviour
     {
         DisableButtons();
         StartCoroutine(CoroutineCoordinator());
+        coroutineQueue.Enqueue(FadeIn());
         coroutineQueue.Enqueue(WaitTime(1f));
         coroutineQueue.Enqueue(EffectTypeWriter(Conversations[textIndex], ButtonTexts[0]));
         textIndex++;
@@ -44,6 +49,13 @@ public class IntroManager : MonoBehaviour
 
     private IEnumerator WaitTime(float time)
     {
+        yield return new WaitForSeconds(time);
+    }
+
+    private IEnumerator WaitTimeColor(float time, bool fadeIn)
+    {
+        if (fadeIn) BlackImage.color = new Color(0,0,0,1);
+        else BlackImage.color = new Color(0,0,0,0);
         yield return new WaitForSeconds(time);
     }
 
@@ -164,13 +176,38 @@ public class IntroManager : MonoBehaviour
 
     private void StartTutorial()
     {
-        GameManager.Instance.IsTutorial = true;
+        coroutineQueue.Enqueue(FadeOut());
+        coroutineQueue.Enqueue(LoadScene(true));
+    }
+
+    private IEnumerator LoadScene(bool isTutorial)
+    {   
+        GameManager.Instance.IsTutorial = isTutorial;
         SceneManager.LoadScene(3);
+        yield return null;
     }
 
     private void StartGame()
     {
-        GameManager.Instance.IsTutorial = false;
-        SceneManager.LoadScene(3);
+        coroutineQueue.Enqueue(FadeOut());
+        coroutineQueue.Enqueue(LoadScene(false));
+    }
+
+    private IEnumerator FadeOut()
+    {
+        anim.SetTrigger("Idle");
+        yield return new WaitForSeconds(0.1f);
+        anim.SetTrigger("FadeOut");
+        yield return new WaitUntil(() => BlackImage.color.a == 1);
+    }
+
+    private IEnumerator FadeIn()
+    {
+        textField.text = "";
+        anim.SetTrigger("IdleBlack");
+        yield return new WaitForSeconds(0.1f);
+        anim.SetTrigger("FadeIn");
+        yield return new WaitUntil(() => BlackImage.color.a == 0);
+
     }
 }

@@ -25,12 +25,12 @@ public class PrologueManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CoroutineCoordinator());
-        coroutineQueue.Enqueue(FadeIn(1f));
-        coroutineQueue.Enqueue(EffectTypeWriter(texts_1[0]));
+        coroutineQueue.Enqueue(FadeIn());
+        coroutineQueue.Enqueue(EffectTypeWriter(texts_1[0],6));
 
         coroutineQueue.Enqueue(EffectTypeWriter(texts_1[1]));
 
-        coroutineQueue.Enqueue(EffectTypeWriter(texts_1[2], true));
+        coroutineQueue.Enqueue(EffectTypeWriter(texts_1[2],0, true));
 
     }
 
@@ -46,20 +46,23 @@ public class PrologueManager : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
+        anim.SetTrigger("Idle");
+        yield return new WaitForSeconds(0.1f);
         anim.SetTrigger("FadeOut");
         yield return new WaitUntil(() => BlackImage.color.a == 1);
     }
 
-    private IEnumerator FadeIn(float delay)
+    private IEnumerator FadeIn()
     {
-        // yield return new WaitForSeconds(delay);
         textField.text = "";
+        anim.SetTrigger("IdleBlack");
+        yield return new WaitForSeconds(0.1f);
         anim.SetTrigger("FadeIn");
         yield return new WaitUntil(() => BlackImage.color.a == 0);
 
     }
 
-    private IEnumerator EffectTypeWriter(string text, bool next = false)
+    private IEnumerator EffectTypeWriter(string text, int time = 3, bool next = false)
     {
         textField.text = "";
         //textField.text = text;
@@ -75,7 +78,7 @@ public class PrologueManager : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(time);
         }
     }
 
@@ -93,13 +96,13 @@ public class PrologueManager : MonoBehaviour
             canGoNext = false;
             index++;
             coroutineQueue.Enqueue(FadeOut());
-            coroutineQueue.Enqueue(FadeIn(1f));
+            coroutineQueue.Enqueue(FadeIn());
 
             coroutineQueue.Enqueue(EffectTypeWriter(texts_2[0]));
 
             coroutineQueue.Enqueue(EffectTypeWriter(texts_2[1]));
 
-            coroutineQueue.Enqueue(EffectTypeWriter(texts_2[2], true));
+            coroutineQueue.Enqueue(EffectTypeWriter(texts_2[2],0, true));
         }
         else if (canGoNextScene && Input.anyKeyDown)
         {
