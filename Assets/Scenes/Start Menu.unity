@@ -773,12 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logsData:
-    question1: 
-    question2: 
-    question3: 
-    response1: 
-    response2: 
-    response3: 
+    sessionID: 
 --- !u!1 &1466601082
 GameObject:
   m_ObjectHideFlags: 0

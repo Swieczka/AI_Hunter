@@ -76,7 +76,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(coroutineQueue.Count);
+           // Debug.Log(coroutineQueue.Count);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -292,17 +292,22 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     public void FinishConversation()
     {
-        /*GameManager.Instance.LogsData.logsData.question1 = currentCharacter.ConversationLogsQuestions[0];
-        GameManager.Instance.LogsData.logsData.question2 = currentCharacter.ConversationLogsQuestions[1];
-        GameManager.Instance.LogsData.logsData.question3 = currentCharacter.ConversationLogsQuestions[2];
-
-        GameManager.Instance.LogsData.logsData.response1 = currentCharacter.ConversationLogsResponses[0];
-        GameManager.Instance.LogsData.logsData.response2 = currentCharacter.ConversationLogsResponses[1];
-        GameManager.Instance.LogsData.logsData.response3 = currentCharacter.ConversationLogsResponses[2];
-        GameManager.Instance.LogsData.SubmitData();*/
         if (GameManager.Instance.IsTutorial)
         {
             GameManager.Instance.IsTutorial = false;
+        }
+        else
+        {
+            GameManager.Instance.LogsData.logsData.FillCharacterInfo(
+                numberOfCharactersLoaded,
+                currentCharacter.characterData.CharacterName,
+                currentCharacter.ConversationLogsQuestions[0],
+                currentCharacter.ConversationLogsResponses[0],
+                currentCharacter.ConversationLogsQuestions[1],
+                currentCharacter.ConversationLogsResponses[1],
+                currentCharacter.ConversationLogsQuestions[2],
+                currentCharacter.ConversationLogsResponses[2]
+                );
         }
         if (numberOfCharactersLoaded < 3)
         {
@@ -311,6 +316,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
         }
         else
         {
+            GameManager.Instance.LogsData.SubmitData();
             Debug.Log("GAME OVER");
         }
         
