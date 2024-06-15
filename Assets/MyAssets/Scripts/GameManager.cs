@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
             PlayerPrefs.DeleteAll();
+            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         }
         else if(_instance != this)
         {
@@ -34,5 +35,6 @@ public class GameManager : MonoBehaviour
     public bool IsTutorial = true;
     public List<CharacterData> AvailableCharacter = new();
     public SendLogsData LogsData = null;
+    public Texture2D cursorTexture=null;
 
 }

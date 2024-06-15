@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Inworld;
 using Inworld.Interactions;
 using Inworld.Sample;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : SingletonBehavior<DialogueManager>
 {
@@ -27,6 +28,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     [SerializeField] private CharacterData tutorialCharacter = null;
     [SerializeField] private List<CharacterData> characters = new();
     [SerializeField] private CharacterData currentCharacter = null;
+    [SerializeField] private List<CharacterData> characterDatas = new();
     public DialogueLine currentDialogue;
     private Queue<IEnumerator> coroutineQueue = new();
 
@@ -35,14 +37,15 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     private void Awake()
     {
-        GameManager.Instance.AvailableCharacter = characters;
-        tutorialCharacter.ConversationLogsQuestions.Clear();
-        tutorialCharacter.ConversationLogsResponses.Clear();
         foreach (CharacterData c in characters)
         {
             c.ConversationLogsQuestions.Clear();
             c.ConversationLogsResponses.Clear();
         }
+        GameManager.Instance.AvailableCharacter = new List<CharacterData>(characters);
+        tutorialCharacter.ConversationLogsQuestions.Clear();
+        tutorialCharacter.ConversationLogsResponses.Clear();
+        
     }
 
     void Start()
@@ -66,8 +69,14 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
          {
             //LoadCharacter(characters[0]);
               numberOfCharactersLoaded++;
-              LoadCharacter(characters[Random.Range(0, GameManager.Instance.AvailableCharacter.Count)]);
-              GameManager.Instance.AvailableCharacter.Remove(currentCharacter);
+            if (numberOfCharactersLoaded == 1)
+            {
+                LoadCharacter(GameManager.Instance.AvailableCharacter[Random.Range(0, 2)]);
+            }
+            else
+            {
+                LoadCharacter(GameManager.Instance.AvailableCharacter[Random.Range(0, GameManager.Instance.AvailableCharacter.Count)]);
+            }
          }
          
     }
@@ -83,27 +92,6 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
             //  selectNewDialogueOption();
         }
     }
-
-    void nextDialoguePlay()
-    {
-        //questionPanel.text = currentDialogue.dialogueText;
-        QuestionPanel.text = "";
-        ActivateTypeWriter(currentDialogue.questionText, QuestionPanel);
-        //responsePanel.text = currentDialogue.response;
-        ResponsePanel.text = "";
-        ActivateTypeWriter(currentDialogue.response, ResponsePanel, 3f);
-    }
-
-    public void selectNewDialogueOption()
-    {
-        coroutineQueue.Clear();
-        StopAllCoroutines();
-        StartCoroutine(CoroutineCoordinator());
-
-        // currentDialogue = currentDialogue.Dialogues[0];
-        nextDialoguePlay();
-    }
-
 
 
     IEnumerator CoroutineCoordinator()
@@ -217,7 +205,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
         if (!currentCharacter.IsAI)
         {
-            ActivateTypeWriter(currentDialogue.response, ResponsePanel, 3f);
+            ActivateTypeWriter(currentDialogue.response, ResponsePanel, 1.5f);
             // currentCharacter.ConversationLogs.Add(currentDialogue.response);
             // coroutineQueue.Enqueue(UnlockAvailableButtons());
         }
@@ -233,7 +221,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
                 if (InworldController.CurrentCharacter)
                 {
                     InworldController.CurrentCharacter.SendText(currentDialogue.questionText);
-                    coroutineQueue.Enqueue(EffectTyping(3f));
+                    coroutineQueue.Enqueue(EffectTyping(1.5f));
                 }
             }
             catch (InworldException e)
@@ -248,15 +236,16 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     {
         numberOfQuestionsAsked = 0;
         currentCharacter = c;
-        foreach (DialogueLine d in c.Dialogues)
+        characterDatas.Add(c);
+        foreach (DialogueLine d in currentCharacter.Dialogues)
         {
             d.asked = false;
         }
         for (int i = 0; i < questionFields.Count; i++)
         {
-            if (c.Dialogues.Count - 1 >= i && c.Dialogues[i] != null)
+            if (currentCharacter.Dialogues.Count - 1 >= i && currentCharacter.Dialogues[i] != null)
             {
-                questionFields[i].text = c.Dialogues[i].questionText;
+                questionFields[i].text = currentCharacter.Dialogues[i].questionText;
                 questionFields[i].GetComponent<Button>().interactable = true;
             }
             else
@@ -269,16 +258,17 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
         {
             b.gameObject.SetActive(true);
         }
-        PortaitImage.sprite = c.Portait;
-        CharacterName.text = "NAME: " + c.characterData.CharacterName.ToUpper();
-        CharacterAge.text = "AGE: " + c.characterData.Age.ToUpper();
-        CharacterStatus.text = "STATUS: " + c.characterData.Status.ToUpper();
-        CharacterJob.text = "JOB: " + c.characterData.Job.ToUpper();
-        CharacterCharacter.text = "CHARACTER: " + c.characterData.Character.ToUpper();
-        Objective.text = c.Objective.ToUpper();
+        PortaitImage.sprite = currentCharacter.Portait;
+        CharacterName.text = "NAME: " + currentCharacter.characterData.CharacterName.ToUpper();
+        CharacterAge.text = "AGE: " + currentCharacter.characterData.Age.ToUpper();
+        CharacterStatus.text = "STATUS: " + currentCharacter.characterData.Status.ToUpper();
+        CharacterJob.text = "JOB: " + currentCharacter.characterData.Job.ToUpper();
+        CharacterCharacter.text = "CHARACTER: " + currentCharacter.characterData.Character.ToUpper();
+        Objective.text = currentCharacter.Objective.ToUpper();
         QuestionPanel.text = "";
         ResponsePanel.text = "";
         //UnlockButtons();
+        GameManager.Instance.AvailableCharacter.Remove(currentCharacter);
     }
 
     private void UnlockFinishConversationButton()
@@ -308,6 +298,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
                 currentCharacter.ConversationLogsQuestions[2],
                 currentCharacter.ConversationLogsResponses[2]
                 );
+            
         }
         if (numberOfCharactersLoaded < 3)
         {
@@ -316,12 +307,20 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
         }
         else
         {
-            GameManager.Instance.LogsData.SubmitData();
-            Debug.Log("GAME OVER");
+            GameManager.Instance.AvailableCharacter = new List<CharacterData>(characterDatas);
+            coroutineQueue.Enqueue(FadeOut());
+            coroutineQueue.Enqueue(LoadNextScene());
+            // GameManager.Instance.LogsData.SubmitData();
+            // Debug.Log("GAME OVER");
         }
         
     }
 
+    private IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene(4);
+    }
     private IEnumerator FadeOut()
     {
         anim.SetTrigger("Idle");

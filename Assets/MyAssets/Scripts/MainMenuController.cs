@@ -8,6 +8,11 @@ public class MainMenuController : MonoBehaviour
 {
     public Image BlackImage = null;
     public Animator anim = null;
+
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic("Menu");
+    }
     public void StartGame()
     {
         StartCoroutine(FadeOut());
@@ -18,5 +23,10 @@ public class MainMenuController : MonoBehaviour
         anim.SetTrigger("FadeOut");
         yield return new WaitUntil(() => BlackImage.color.a == 1);
         SceneManager.LoadScene(1);
+    }
+
+    public void ButtonSound()
+    {
+        AudioManager.Instance.PlaySFX("Button");
     }
 }

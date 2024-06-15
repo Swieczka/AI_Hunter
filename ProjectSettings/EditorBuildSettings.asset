@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InterrogationScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/MakeDesicionScene.unity
+    guid: d58e86922dcbb61448aec302c8cfc60d
+  - enabled: 1
+    path: Assets/Scenes/EvaluationScene.unity
+    guid: f090528faa0b60246849276304ad037b
+  - enabled: 1
+    path: Assets/Scenes/QuestionaryScene.unity
+    guid: 7b5f0f49bdfa9a947ba350495e5dfb8e
   m_configObjects: {}

@@ -54,8 +54,9 @@ public class SendLogsData : MonoBehaviour
         beth selection - entry.663104300
         mark selection - entry.913910474
         score - entry.87966159
-        feedback - entry.1461599095
-        is correct ai selection - entry.1682600286
+        feedback_1 - entry.1461599095
+        feedback_2 - entry.1682600286
+        feedback_3 - entry.156359541
         */
         form.AddField("entry.542467327", dataInfo.sessionID);
         #region c1
@@ -94,8 +95,9 @@ public class SendLogsData : MonoBehaviour
         form.AddField("entry.663104300", dataInfo.Beth_Selection);
         form.AddField("entry.913910474", dataInfo.Mark_Selection);
         form.AddField("entry.87966159", dataInfo.Score);
-        form.AddField("entry.1461599095", dataInfo.Feedback);
-        form.AddField("entry.1682600286", dataInfo.Correct_AI_Selection);
+        form.AddField("entry.1461599095", dataInfo.Feedback_1);
+        form.AddField("entry.1682600286", dataInfo.Feedback_2);
+        form.AddField("entry.156359541", dataInfo.Feedback_3);
         #endregion
 
         using ( UnityWebRequest www = UnityWebRequest.Post(formUrl, form))
@@ -126,8 +128,10 @@ public class LogsDataInfo
     public string CharacterOrder = "";
     public string David_Selection = "", Beth_Selection = "", Mark_Selection = "";
     public string Score = "";
-    public string Feedback = "";
-    public string Correct_AI_Selection = "";
+    public string Feedback_1 = "";
+    public string Feedback_2 = "";
+    public string Feedback_3 = "";
+    public string SelectedName = "";
 
     public void FillCharacterInfo(int i, string name, string q1, string r1, string q2, string r2, string q3, string r3)
     {

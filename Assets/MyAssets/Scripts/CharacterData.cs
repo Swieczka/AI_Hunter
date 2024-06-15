@@ -16,6 +16,7 @@ public class CharacterData : ScriptableObject
     public Sprite Portait = null;
     public string Objective = "";
     public bool IsAI = false;
+    public bool IsSelected = false;
 
     [TextArea]
     public List<string> ConversationLogsQuestions = new();

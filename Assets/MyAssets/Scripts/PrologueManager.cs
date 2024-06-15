@@ -66,11 +66,14 @@ public class PrologueManager : MonoBehaviour
     {
         textField.text = "";
         //textField.text = text;
+        AudioManager.Instance.PlaySFXOnLoop();
         foreach (char c in text.ToCharArray())
         {
             textField.text += c;
+            
             yield return new WaitForSeconds(0.02f);
         }
+        AudioManager.Instance.StillSpeaking = false;
         if (next)
         {
             if (index == 0) canGoNext = true;
