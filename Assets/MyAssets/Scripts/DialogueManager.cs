@@ -23,6 +23,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     [SerializeField] private GameObject FinishConversationButton = null;
     public Image BlackImage = null;
     public Animator anim = null;
+    public GameObject LoadingObject = null;
 
     [Header("Characters")]
     [SerializeField] private CharacterData tutorialCharacter = null;
@@ -50,13 +51,26 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     void Start()
     {
+        AudioManager.Instance.musicSource.Stop();
         StartCoroutine(CoroutineCoordinator());
         StartSetup();
     }
     private void StartSetup()
     {
+        coroutineQueue.Enqueue(BootIn());
         coroutineQueue.Enqueue(FadeIn());
         LockButtons();
+    }
+
+    private IEnumerator BootIn()
+    {
+        LoadingObject.SetActive(true);
+        AudioManager.Instance.PlaySFX("Boot2");
+        while (AudioManager.Instance.sfxSource.isPlaying)
+        {
+            yield return null;
+        }
+        AudioManager.Instance.PlayMusic("Gameplay");
     }
     private void SelectCharacterToLoad()
     {
@@ -69,14 +83,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
          {
             //LoadCharacter(characters[0]);
               numberOfCharactersLoaded++;
-            if (numberOfCharactersLoaded == 1)
-            {
-                LoadCharacter(GameManager.Instance.AvailableCharacter[Random.Range(0, 2)]);
-            }
-            else
-            {
-                LoadCharacter(GameManager.Instance.AvailableCharacter[Random.Range(0, GameManager.Instance.AvailableCharacter.Count)]);
-            }
+            LoadCharacter(GameManager.Instance.AvailableCharacter[Random.Range(0, GameManager.Instance.AvailableCharacter.Count)]);
          }
          
     }
@@ -127,11 +134,13 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     private IEnumerator EffectTypeWriter(string text, TMP_Text textField, float delay = 0)
     {
         yield return new WaitForSeconds(delay);
+        AudioManager.Instance.PlaySFXOnLoop();
         foreach (char c in text.ToCharArray())
         {
             textField.text += c;
             yield return new WaitForSeconds(0.01f);
         }
+        AudioManager.Instance.StillSpeaking = false;
         //Debug.Log($"ITEMS IN QUEUE {coroutineQueue.Count}        Time: {Time.time}");
         if (coroutineQueue.Count == 0)
         {
@@ -195,12 +204,13 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     public void AskQuestion(int index)
     {
         LockButtons();
+        AudioManager.Instance.PlaySFX("Button2");
         numberOfQuestionsAsked++;
         QuestionPanel.text = "";
         ResponsePanel.text = "";
         currentCharacter.Dialogues[index].asked = true;
         currentDialogue = currentCharacter.Dialogues[index];
-        ActivateTypeWriter(currentDialogue.questionText, QuestionPanel);
+        ActivateTypeWriter(currentDialogue.questionText, QuestionPanel,0.25f);
         //currentCharacter.ConversationLogs.Add(currentDialogue.questionText);
 
         if (!currentCharacter.IsAI)
@@ -236,7 +246,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
     {
         numberOfQuestionsAsked = 0;
         currentCharacter = c;
-        characterDatas.Add(c);
+        if(!GameManager.Instance.IsTutorial) characterDatas.Add(c);
         foreach (DialogueLine d in currentCharacter.Dialogues)
         {
             d.asked = false;
@@ -282,6 +292,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
 
     public void FinishConversation()
     {
+        AudioManager.Instance.PlaySFX("Button2");
         if (GameManager.Instance.IsTutorial)
         {
             GameManager.Instance.IsTutorial = false;
@@ -335,7 +346,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
         SelectCharacterToLoad();
         yield return new WaitForSeconds(0.1f);
         anim.SetTrigger("FadeIn");
+        LoadingObject.SetActive(false);
         yield return new WaitUntil(() => BlackImage.color.a == 0);
-
     }
 }

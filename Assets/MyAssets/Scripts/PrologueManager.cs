@@ -26,7 +26,7 @@ public class PrologueManager : MonoBehaviour
     {
         StartCoroutine(CoroutineCoordinator());
         coroutineQueue.Enqueue(FadeIn());
-        coroutineQueue.Enqueue(EffectTypeWriter(texts_1[0],6));
+        coroutineQueue.Enqueue(EffectTypeWriter(texts_1[0],3, false, true));
 
         coroutineQueue.Enqueue(EffectTypeWriter(texts_1[1]));
 
@@ -62,9 +62,10 @@ public class PrologueManager : MonoBehaviour
 
     }
 
-    private IEnumerator EffectTypeWriter(string text, int time = 3, bool next = false)
+    private IEnumerator EffectTypeWriter(string text, int time = 3, bool next = false, bool remove=false)
     {
-        textField.text = "";
+        if (remove) textField.text = "";
+        else textField.text += "\n\n";
         //textField.text = text;
         AudioManager.Instance.PlaySFXOnLoop();
         foreach (char c in text.ToCharArray())
@@ -94,22 +95,24 @@ public class PrologueManager : MonoBehaviour
 
     private void Update()
     {
-        if (canGoNext && Input.anyKeyDown)
+        if (Input.anyKeyDown && canGoNext)
         {
             canGoNext = false;
+            AudioManager.Instance.PlaySFX("Button4");
             index++;
             coroutineQueue.Enqueue(FadeOut());
             coroutineQueue.Enqueue(FadeIn());
 
-            coroutineQueue.Enqueue(EffectTypeWriter(texts_2[0]));
+            coroutineQueue.Enqueue(EffectTypeWriter(texts_2[0],3,false,true));
 
             coroutineQueue.Enqueue(EffectTypeWriter(texts_2[1]));
 
             coroutineQueue.Enqueue(EffectTypeWriter(texts_2[2],0, true));
         }
-        else if (canGoNextScene && Input.anyKeyDown)
+        else if (Input.anyKeyDown && canGoNextScene)
         {
             canGoNextScene = false;
+            AudioManager.Instance.PlaySFX("Button4");
             coroutineQueue.Enqueue(NextScene());
         }
     }

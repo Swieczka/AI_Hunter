@@ -64,11 +64,13 @@ public class EndSceneManager : MonoBehaviour
     private IEnumerator EffectTypeWriter(string text)
     {
         TextPanel.text = "";
+        AudioManager.Instance.PlaySFXOnLoop();
         foreach (char c in text.ToCharArray())
         {
             TextPanel.text += c;
             yield return new WaitForSeconds(0.02f);
         }
+        AudioManager.Instance.StillSpeaking = false;
         ContinueButton.interactable = true;
         ButtonText.enabled = true;
     }
@@ -85,6 +87,7 @@ public class EndSceneManager : MonoBehaviour
 
     public void Continue()
     {
+        AudioManager.Instance.PlaySFX("Button2");
         coroutineQueue.Enqueue(FadeOut());
         coroutineQueue.Enqueue(LoadNextScene());
     }

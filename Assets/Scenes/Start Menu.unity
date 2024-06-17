@@ -2609,7 +2609,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 960, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.6
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2779,14 +2779,18 @@ MonoBehaviour:
   - name: Gameplay
     clip: {fileID: 8300000, guid: 3a0463efdfab5b848bb6e7075c2e651a, type: 3}
   sfxSounds:
-  - name: Button
+  - name: Button1
     clip: {fileID: 8300000, guid: 42e1bd1f3bcecc44aa11170ae3d47bad, type: 3}
-  - name: Type1
-    clip: {fileID: 8300000, guid: 5691496fe2358c24aa0c040d87f86dbf, type: 3}
-  - name: Type2
-    clip: {fileID: 8300000, guid: a97407a0d9f4996468ad6e5bb603c04e, type: 3}
-  - name: Type3
-    clip: {fileID: 8300000, guid: 35a4c24f7b466f14387368b0cbce6356, type: 3}
+  - name: Button2
+    clip: {fileID: 8300000, guid: c48f16d8b63353343bef08c720e64213, type: 3}
+  - name: Button3
+    clip: {fileID: 8300000, guid: 669341c10f4b6544b8426c33225aaa3c, type: 3}
+  - name: Button4
+    clip: {fileID: 8300000, guid: aaf9bb0e67d67c94082b34fd7a1ff3b7, type: 3}
+  - name: MSG
+    clip: {fileID: 8300000, guid: 81e06576ac3774541abddaa389646d3e, type: 3}
+  - name: Boot2
+    clip: {fileID: 8300000, guid: f6b197a541f77a5438114ab1b68846c2, type: 3}
   typingSounds:
   - name: Type1
     clip: {fileID: 8300000, guid: 6f951d364eb985f47a5694ad9b1ea725, type: 3}

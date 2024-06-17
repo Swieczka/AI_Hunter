@@ -36,6 +36,7 @@ public class DesicionSceneManager : MonoBehaviour
     }
     public void NextCharacter()
     {
+        AudioManager.Instance.PlaySFX("Button3");
         charIndex++;
         if (charIndex > 2) charIndex = 0;
         LoadCharacter(GameManager.Instance.AvailableCharacter[charIndex]);
@@ -43,6 +44,7 @@ public class DesicionSceneManager : MonoBehaviour
 
     public void PrevCharacter()
     {
+        AudioManager.Instance.PlaySFX("Button3");
         charIndex--;
         if (charIndex < 0) charIndex = 2;
         LoadCharacter(GameManager.Instance.AvailableCharacter[charIndex]);
@@ -98,6 +100,7 @@ public class DesicionSceneManager : MonoBehaviour
 
     public void CloseSummary()
     {
+        AudioManager.Instance.PlaySFX("Button4");
         SummaryPanel.SetActive(false);
         ChoicePanel.SetActive(true);
     }
@@ -105,6 +108,7 @@ public class DesicionSceneManager : MonoBehaviour
     private void LoadChoices()
     {
         FinishButton.interactable = false;
+        FinishButton.GetComponentInChildren<TMP_Text>().color = Color.gray;
         for(int i=0; i<=2;i++)
         {
             CharacterData.MetricData m = GameManager.Instance.AvailableCharacter[i].characterData;
@@ -119,23 +123,27 @@ public class DesicionSceneManager : MonoBehaviour
 
     public void SelectRogueAI(int index)
     {
-        foreach(CharacterData c in GameManager.Instance.AvailableCharacter)
+        AudioManager.Instance.PlaySFX("Button2");
+        foreach (CharacterData c in GameManager.Instance.AvailableCharacter)
         {
             c.IsSelected = false;
         }
         GameManager.Instance.AvailableCharacter[index].IsSelected = true;
         foreach (Button b in DecisionButtons)
         {
-            b.interactable = false;
             b.GetComponent<Image>().sprite = DefaultButtonSprite;
         }
         DecisionButtons[index].GetComponent<Image>().sprite = SelectedButtonSprite;
         FinishButton.interactable = true;
+        FinishButton.GetComponentInChildren<TMP_Text>().color = new Color(0.2039216f, 0.7529412f, 0.7176471f,1);
     }
 
     public void Deselect()
     {
-        foreach (CharacterData c in GameManager.Instance.AvailableCharacter)
+        AudioManager.Instance.PlaySFX("Button4");
+        SummaryPanel.SetActive(true);
+        ChoicePanel.SetActive(false);
+        /*foreach (CharacterData c in GameManager.Instance.AvailableCharacter)
         {
             c.IsSelected = false;
         }
@@ -144,11 +152,12 @@ public class DesicionSceneManager : MonoBehaviour
             b.interactable = true;
             b.GetComponent<Image>().sprite = DefaultButtonSprite;
         }
-        FinishButton.interactable = false;
+        FinishButton.interactable = false;*/
     }
 
     public void FinishGame()
     {
+        AudioManager.Instance.PlaySFX("Button1");
         foreach (CharacterData c in GameManager.Instance.AvailableCharacter)
         {
             if(c.IsSelected)

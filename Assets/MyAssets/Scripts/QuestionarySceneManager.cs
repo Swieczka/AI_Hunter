@@ -61,17 +61,21 @@ public class QuestionarySceneManager : MonoBehaviour
     private IEnumerator EffectTypeWriter(string text)
     {
         TextPanel.text = "";
+        yield return new WaitForSeconds(0.25f);
+        AudioManager.Instance.PlaySFXOnLoop();
         foreach (char c in text.ToCharArray())
         {
             TextPanel.text += c;
             yield return new WaitForSeconds(0.03f);
         }
+        AudioManager.Instance.StillSpeaking = false;
         ContinueButton.interactable = true;
         ButtonText.enabled = true;
     }
 
     public void Continue()
     {
+        AudioManager.Instance.PlaySFX("Button2");
         questionCounter++;
         if(questionCounter > 3)
         {

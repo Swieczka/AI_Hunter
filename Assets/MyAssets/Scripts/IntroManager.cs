@@ -62,13 +62,15 @@ public class IntroManager : MonoBehaviour
     private IEnumerator EffectTypeWriter(string text, string textButton1="", string textButton2="")
     {
          textField.text = "";
+        yield return new WaitForSeconds(0.25f);
+        AudioManager.Instance.PlaySFXOnLoop();
         //textField.text = text;
         foreach (char c in text.ToCharArray())
          {
              textField.text += c;
              yield return new WaitForSeconds(0.02f);
          }
-
+        AudioManager.Instance.StillSpeaking = false;
         yield return new WaitForSeconds(0.25f);
         if(textButton1 != "")
         {
@@ -97,7 +99,8 @@ public class IntroManager : MonoBehaviour
     public void Next()
     {
         DisableButtons();
-        switch(textIndex)
+        AudioManager.Instance.PlaySFX("Button2");
+        switch (textIndex)
         {
             case 1:
                 coroutineQueue.Enqueue(EffectTypeWriter(Conversations[textIndex], ButtonTexts[0]));
@@ -150,6 +153,7 @@ public class IntroManager : MonoBehaviour
     public void Skip()
     {
         DisableButtons();
+        AudioManager.Instance.PlaySFX("Button2");
         switch (textIndex)
         {
             case 3:

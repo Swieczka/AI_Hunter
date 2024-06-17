@@ -19,23 +19,24 @@ MonoBehaviour:
     Job: Student
     Character: Humorous
   Dialogues:
-  - questionText: '[Family] What''s it like to have a girlfriend?'
+  - questionText: <b>[Family]</b> What's it like to have a girlfriend?
     response: 
     asked: 0
-  - questionText: '[Job] What would you like to do after graduation?'
+  - questionText: <b>[Job]</b> What would you like to do after graduation?
     response: 
     asked: 0
-  - questionText: '[Society] Can humans live in harmony with AI?'
+  - questionText: <b>[Society]</b> Can humans live in harmony with AI?
     response: 
     asked: 0
-  - questionText: '[War] Can you imagine the future after another Cyber War?'
+  - questionText: <b>[War]</b> Can you imagine the future after another Cyber War?
     response: 
     asked: 0
-  - questionText: '[Opinion] Are you afraid of AI and its possible global threat?'
+  - questionText: <b>[Opinion]</b> Are you afraid of AI and its possible global threat?
     response: 
     asked: 0
   Portait: {fileID: 21300000, guid: 3b65cdb7375c2ac48a59ae1e8d4addd0, type: 3}
   Objective: Ask questions to find out if he's AI
   IsAI: 1
+  IsSelected: 0
   ConversationLogsQuestions: []
   ConversationLogsResponses: []

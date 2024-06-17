@@ -19,26 +19,29 @@ MonoBehaviour:
     Job: Graphic designer
     Character: Withdrawn
   Dialogues:
-  - questionText: '[Family] How did you lose your husband?'
+  - questionText: <b>[Family]</b> How did you lose your husband?
     response: He was stationed at a base that got overtaken by the AI forces. There
       was no chance for him or his unit. It's hard to talk about it.
     asked: 0
-  - questionText: '[Job] Are you satisfied with your job?'
+  - questionText: <b>[Job]</b> Are you satisfied with your job?
     response: It's fine. I get to create and that helps me cope, in a way. But it's
       not the same as having someone to share it with.
     asked: 0
-  - questionText: '[Society] Can and should humans coexist with AI?'
+  - questionText: <b>[Society]</b> Can and should humans coexist with AI?
     response: Maybe in a controlled environment, like how the government handles
       it. But in everyday life? No, I don't believe we should risk it.
     asked: 0
-  - questionText: '[War] Will people survive another Cyber War?'
+  - questionText: <b>[War]</b> Will people survive another Cyber War?
     response: I don't think so. We've barely recovered from the last one. Another
       war would likely be the end of us.
     asked: 0
-  - questionText: '[Opinion] Does AI violate human security?'
+  - questionText: <b>[Opinion]</b> Does AI violate human security?
     response: Yes, it does. The fact that we need such stringent measures to control
       it shows how dangerous it can be. Our security is always at risk.
     asked: 0
   Portait: {fileID: 21300000, guid: 065b139f7e289564dae2f41d9c7332f5, type: 3}
   Objective: Ask questions to find out if she's AI
   IsAI: 0
+  IsSelected: 0
+  ConversationLogsQuestions: []
+  ConversationLogsResponses: []
