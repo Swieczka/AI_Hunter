@@ -42,6 +42,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
         {
             c.ConversationLogsQuestions.Clear();
             c.ConversationLogsResponses.Clear();
+            c.IsSelected = false;
         }
         GameManager.Instance.AvailableCharacter = new List<CharacterData>(characters);
         tutorialCharacter.ConversationLogsQuestions.Clear();
@@ -288,6 +289,7 @@ public class DialogueManager : SingletonBehavior<DialogueManager>
             b.gameObject.SetActive(false);
         }
         FinishConversationButton.SetActive(true);
+        FinishConversationButton.GetComponent<TMP_Text>().text = GameManager.Instance.IsTutorial ? "Finish the tutorial and start conversation simulations." : "Finish the conversation.";
     }
 
     public void FinishConversation()

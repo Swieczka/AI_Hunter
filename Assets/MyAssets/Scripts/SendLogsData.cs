@@ -19,6 +19,10 @@ public class SendLogsData : MonoBehaviour
         StartCoroutine(PostData(logsData));
     }
 
+    public void ClearData()
+    {
+        logsData = new();
+    }
     private IEnumerator PostData(LogsDataInfo dataInfo)
     {
         WWWForm form = new WWWForm();
@@ -138,6 +142,7 @@ public class LogsDataInfo
         switch(name)
         {
             case "David":
+                break;
                 CharacterOrder += "D";
                 c1.name = name;
                 c1.q1 = q1;
@@ -146,8 +151,9 @@ public class LogsDataInfo
                 c1.r2 = r2;
                 c1.q3 = q3;
                 c1.r3 = r3;
-                break;
+                
             case "Beth":
+                break;
                 CharacterOrder += "B";
                 c2.name = name;
                 c2.q1 = q1;
@@ -156,7 +162,7 @@ public class LogsDataInfo
                 c2.r2 = r2;
                 c2.q3 = q3;
                 c2.r3 = r3;
-                break;
+                //break;
             case "Mark":
                 CharacterOrder += "M";
                 c3.name = name;

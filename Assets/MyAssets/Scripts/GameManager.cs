@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            PlayerPrefs.DeleteAll();
             Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         }
         else if(_instance != this)

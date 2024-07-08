@@ -83,7 +83,7 @@ namespace Inworld.Sample
         {
             _HandleChatCanvas();
             _HandleOptionCanvas();
-            InworldController.Audio.AutoDetectPlayerSpeaking = !IsAnyCanvasOpen;
+          //  InworldController.Audio.AutoDetectPlayerSpeaking = !IsAnyCanvasOpen;
         }
         protected void _HandleOptionCanvas()
         {

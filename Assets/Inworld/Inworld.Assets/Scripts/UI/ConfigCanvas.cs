@@ -34,8 +34,8 @@ namespace Inworld.Assets
         Capabilities m_Capabilities;
         void OnEnable()
         {
-            if (m_VolumeSlider)
-                m_VolumeSlider.value = InworldController.Audio.Volume * 100;
+           /* if (m_VolumeSlider)
+                m_VolumeSlider.value = InworldController.Audio.Volume * 100;*/
             if (m_VolumeValue)
                 m_VolumeValue.text = m_VolumeSlider.value.ToString(CultureInfo.InvariantCulture);
             if (string.IsNullOrEmpty(m_CurrentPlayerName))
@@ -53,7 +53,7 @@ namespace Inworld.Assets
         {
             if (m_VolumeValue)
                 m_VolumeValue.text = m_VolumeSlider.value.ToString(CultureInfo.InvariantCulture);
-            InworldController.Audio.Volume = volume * 0.01f;
+           // InworldController.Audio.Volume = volume * 0.01f;
         }
         public void ApplyChanges()
         {

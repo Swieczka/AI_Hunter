@@ -11,7 +11,7 @@ public class QuestionarySceneManager : MonoBehaviour
     public Animator anim = null;
     private Queue<IEnumerator> coroutineQueue = new();
 
-    public Button ContinueButton = null, SkipButton = null;
+    public Button ContinueButton = null, SkipButton = null, CheckButton=null;
     public TMP_Text AnswerField = null, TextPanel = null, ButtonText = null, ButtonSkipText = null;
     public TMP_InputField inputField = null;
 
@@ -19,6 +19,7 @@ public class QuestionarySceneManager : MonoBehaviour
     public string IntroText, Question1, Question2, Question3;
 
     private int questionCounter = 0;
+    private bool canSkip = true;
 
     private void Start()
     {
@@ -117,9 +118,23 @@ public class QuestionarySceneManager : MonoBehaviour
         }
     }
 
+    public void MobileOpen()
+    {
+       
+    }
+
+    public void MobileClose()
+    {
+        
+    }
+
     public void Skip()
     {
-        GameManager.Instance.LogsData.SubmitData();
+        if (canSkip)
+        {
+            canSkip = false;
+            GameManager.Instance.LogsData.SubmitData();
+        }
         coroutineQueue.Enqueue(FadeOut());
         coroutineQueue.Enqueue(LoadNextScene());
     }
@@ -134,6 +149,7 @@ public class QuestionarySceneManager : MonoBehaviour
     {
         ContinueButton.gameObject.SetActive(false);
         SkipButton.gameObject.SetActive(false);
+        CheckButton.gameObject.SetActive(false);
         yield return null;
     }
 
@@ -143,6 +159,7 @@ public class QuestionarySceneManager : MonoBehaviour
         {
             ContinueButton.gameObject.SetActive(true);
             SkipButton.gameObject.SetActive(true);
+            CheckButton.gameObject.SetActive(true);
         }
         else
         {
